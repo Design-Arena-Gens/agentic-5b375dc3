@@ -1,0 +1,442 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.desktop-icons {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.desktop-icon .icon {
+  font-size: 48px;
+  margin-bottom: 5px;
+}
+
+.icon-label {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  text-align: center;
+}
+
+.window {
+  position: absolute;
+  background: white;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.window.maximized {
+  border-radius: 0;
+}
+
+.window-titlebar {
+  background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
+  border-bottom: 1px solid #ccc;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  border-radius: 8px 8px 0 0;
+}
+
+.maximized .window-titlebar {
+  border-radius: 0;
+}
+
+.window-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.window-icon {
+  font-size: 16px;
+}
+
+.window-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.window-controls button {
+  width: 32px;
+  height: 24px;
+  border: 1px solid #ccc;
+  background: linear-gradient(180deg, #fff 0%, #e5e5e5 100%);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.window-controls button:hover {
+  background: linear-gradient(180deg, #fff 0%, #d5d5d5 100%);
+}
+
+.window-controls button:active {
+  background: #ccc;
+}
+
+.window-content {
+  flex: 1;
+  overflow: auto;
+  background: white;
+}
+
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(180deg, #3a6ea5 0%, #1e3c72 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+}
+
+.start-button {
+  padding: 6px 16px;
+  background: linear-gradient(180deg, #5cb85c 0%, #449d44 100%);
+  border: 1px solid #398439;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.start-button:hover {
+  background: linear-gradient(180deg, #6cc76c 0%, #52ad52 100%);
+}
+
+.start-button.active {
+  background: linear-gradient(180deg, #449d44 0%, #5cb85c 100%);
+}
+
+.windows-logo {
+  font-size: 18px;
+}
+
+.taskbar-windows {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  margin: 0 8px;
+  overflow-x: auto;
+}
+
+.taskbar-window {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.taskbar-window:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.taskbar-window.active {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.system-tray {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+.time {
+  font-size: 12px;
+}
+
+.start-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 8px;
+  width: 300px;
+  background: #f0f0f0;
+  border: 1px solid #999;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.start-menu-header {
+  background: linear-gradient(90deg, #3a6ea5 0%, #1e3c72 100%);
+  color: white;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.start-menu-items {
+  padding: 8px 0;
+}
+
+.start-menu-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.start-menu-item:hover {
+  background: #e0e0e0;
+}
+
+.start-menu-item span {
+  font-size: 20px;
+}
+
+.start-menu-footer {
+  border-top: 1px solid #ccc;
+  padding: 8px;
+}
+
+.start-menu-footer button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(180deg, #d9534f 0%, #c9302c 100%);
+  color: white;
+  border: 1px solid #ac2925;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.start-menu-footer button:hover {
+  background: linear-gradient(180deg, #e96460 0%, #d9534f 100%);
+}
+
+.app-content {
+  padding: 20px;
+  height: 100%;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.file-item:hover {
+  background: #f0f0f0;
+}
+
+.file-icon {
+  font-size: 24px;
+}
+
+.notepad-textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  resize: none;
+  padding: 0;
+}
+
+.browser {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+}
+
+.browser-toolbar {
+  display: flex;
+  gap: 8px;
+}
+
+.address-bar {
+  flex: 1;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.browser-toolbar button {
+  padding: 6px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.browser-toolbar button:hover {
+  background: #0056b3;
+}
+
+.browser-content {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  background: white;
+  overflow: auto;
+}
+
+.paint-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.paint-toolbar input[type="color"] {
+  width: 50px;
+  height: 30px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.paint-toolbar button {
+  padding: 6px 16px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.paint-toolbar button:hover {
+  background: #c82333;
+}
+
+.paint-canvas {
+  border: 2px solid #ccc;
+  background: white;
+  cursor: crosshair;
+  display: block;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+.calc-display {
+  background: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: right;
+  font-size: 24px;
+  font-family: 'Courier New', monospace;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.calc-buttons button {
+  padding: 20px;
+  font-size: 18px;
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.calc-buttons button:hover {
+  background: #e9ecef;
+}
+
+.calc-buttons button:active {
+  background: #dee2e6;
+}
+
+.explorer-path {
+  background: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+}
